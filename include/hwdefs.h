@@ -83,9 +83,18 @@
 
 #define CAN3_EXTI           EXTI8
 
-#define CAN3_EXTI_VECTOR     NVIC_EXTI15_10_IRQ
+#define CAN3_EXTI_VECTOR    NVIC_EXTI15_10_IRQ
 
 #endif
+
+#define DRV8912_CS_PORT     GPIOC
+#define DRV8912_CS_PIN      GPIO1
+
+#define TIC12400_CS_PORT    GPIOC
+#define TIC12400_CS_PIN     GPIO0
+
+#define TIC12400_INT_PORT   GPIOC
+#define TIC12400_INT_PIN    GPIO13
 
 //Address of parameter block in flash for 105
 #define FLASH_PAGE_SIZE 2048
