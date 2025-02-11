@@ -51,7 +51,6 @@
 
 #define TERM_USART         USART1
 
-#define  CAN3_ISR   exti9_5_isr
 
 #define SPI_CAN             SPI1
 
@@ -61,17 +60,16 @@
 #define CAN3_INT_PORT       GPIOC
 #define CAN3_INT_PIN        GPIO8
 
-#define CAN3_EXTI           EXTI15    
-
+#define CAN3_EXTI           EXTI8
 #define CAN3_EXTI_VECTOR    NVIC_EXTI9_5_IRQ
+#define CAN3_ISR   exti9_5_isr
+
 
 #else           // Zombieverter uses USART3, SPI2
 
 #define TERM_USART         USART3
 
 #define TERM_BUFSIZE       128
-
-#define  CAN3_ISR  exti15_10_isr
 
 #define SPI_CAN             SPI2
 
@@ -81,9 +79,9 @@
 #define CAN3_INT_PORT       GPIOE
 #define CAN3_INT_PIN        GPIO15
 
-#define CAN3_EXTI           EXTI8
-
+#define CAN3_EXTI           EXTI15
 #define CAN3_EXTI_VECTOR    NVIC_EXTI15_10_IRQ
+#define  CAN3_ISR  exti15_10_isr
 
 #endif
 
@@ -95,6 +93,7 @@
 
 #define TIC12400_INT_PORT   GPIOC
 #define TIC12400_INT_PIN    GPIO13
+
 
 //Address of parameter block in flash for 105
 #define FLASH_PAGE_SIZE 2048
