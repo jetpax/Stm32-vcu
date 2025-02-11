@@ -24,6 +24,40 @@
 #include <libopencm3/stm32/gpio.h>
 #include "hwdefs.h"
 
+
+// Register Map for DRV8912/10, mostly the same for other DRV89xx
+enum {
+  DRV8912_IC_STAT = 0x00,
+  DRV8912_OCP_STAT_1,
+  DRV8912_OCP_STAT_2,
+  DRV8912_OCP_STAT_3,
+  DRV8912_OLD_STAT_1,
+  DRV8912_OLD_STAT_2,
+  DRV8912_OLD_STAT_3,
+  DRV8912_CONFIG_CTRL,
+  DRV8912_OP_CTRL_1,
+  DRV8912_OP_CTRL_2,
+  DRV8912_OP_CTRL_3,
+  DRV8912_PWM_CTRL_1,
+  DRV8912_PWM_CTRL_2,
+  DRV8912_FW_CTRL_1,
+  DRV8912_FW_CTRL_2,
+  DRV8912_PWM_MAP_CTRL_1,
+  DRV8912_PWM_MAP_CTRL_2,
+  DRV8912_PWM_MAP_CTRL_3,
+  DRV8912_PWM_FREQ_CTRL,
+  DRV8912_PWM_DUTY_CTRL_1,
+  DRV8912_PWM_DUTY_CTRL_2,
+  DRV8912_PWM_DUTY_CTRL_3,
+  DRV8912_PWM_DUTY_CTRL_4,
+  DRV8912_SR_CTRL_1,
+  DRV8912_SR_CTRL_2,
+  DRV8912_OLD_CTRL_1,
+  DRV8912_OLD_CTRL_2,
+  DRV8912_OLD_CTRL_3,
+  DRV8912_OLD_CTRL_4
+};
+
 // DRV8912 Modes
 enum class OutputMode {
     HIGH_SIDE,   // HS mode
@@ -40,11 +74,12 @@ public:
     void init();
 
     // Motor Control
-    void setChannelMode(uint8_t channel, OutputMode mode);
+    void setChannelMode(uint8_t channel, OutputMode mode, bool enablePWM);
     void enableChannel(uint8_t channel);
     void disableChannel(uint8_t channel);
-    void setPWM(uint8_t channel, uint8_t dutyCycle);
-    
+    void setPWMFrequency(uint8_t pwmChannel, uint8_t frequencySetting);
+    void setPWMDutyCycle(uint8_t pwmChannel, uint8_t dutyCycle);  
+    void setPWMChannelMapping(uint8_t channel, uint8_t pwmChannel);
     // Status & Fault Handling
     uint16_t readStatus();
     void clearFaults();
